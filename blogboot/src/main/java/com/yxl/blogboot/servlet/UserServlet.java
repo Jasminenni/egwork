@@ -77,13 +77,18 @@ public class UserServlet extends HttpServlet
 		{
 			String name=req.getParameter("username");
 			String pwd=req.getParameter("userpwd");
-//			User u = new User();
-//			u.setName(name);
-//			u.setPwd(pwd);
+			
+			//将登陆用户设置在User javabean里
+			User u = new User();
+			u.setName(name);
+			u.setPwd(pwd);
+			
 			System.out.println(name+"-->"+pwd);
 			long result=this.db.checkName(name, pwd);
 			//req.setAttribute("result", result);
-//			req.getSession().setAttribute("loginname", u);
+			
+			//将登陆用户存储在session里
+		    req.getSession().setAttribute("loginname", u);
 			PrintWriter pw= resp.getWriter();
 			pw.print(result);
 			pw.flush();
@@ -171,6 +176,13 @@ public class UserServlet extends HttpServlet
 		// TODO Auto-generated method stub
 		System.out.println("UserServlet  doPost  ....");
 		doGet(req,resp);
+	}
+
+	@Override
+	public void init() throws ServletException
+	{
+		// TODO Auto-generated method stub
+		super.init();
 	}
 
 }

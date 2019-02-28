@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@ServletComponentScan("com.yxl.blogboot.servlet")
+@ServletComponentScan({"com.yxl.blogboot.servlet","com.yxl.blogboot.filter"})
 public class App 
 {
     public static void main( String[] args )
